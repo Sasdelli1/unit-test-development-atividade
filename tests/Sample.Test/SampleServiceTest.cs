@@ -34,27 +34,39 @@ namespace Sample.Test
             Assert.Equal(withoutTotal, resultWithoutTotal);
         }
 
-        [Fact]
-        public void Sum_MultipleValues_ReturnSuccess()
-        {
-            //arrange
-            var value1 = 2;
-            var value2 = 4;
-            var value3 = 6;
-            var value4 = 8;
-            var value5 = 12;
-            var total = 2;
-            var withTotal = 34;
-            var withoutTotal = 32;
-
-            //act
-            var resultWithTotal = _sampleService.Sum(total, value1, value2, value3, value4, value5);
-            var resultWithoutTotal = _sampleService.Sum(value1, value2, value3, value4, value5);
-
-            //Assert
-            Assert.Equal(withTotal, resultWithTotal);
-            Assert.Equal(withoutTotal, resultWithoutTotal);
+        [Theory]
+        [InlineData(2, 4, 6, 8, 12, 2, 34)]
+        [InlineData(4,8,12,16,24,4,68)]
+        [InlineData(-10,10,-5,20,-1,10,24)]
+        [InlineData(10, 25,-100, -50, -2, -30, -147)]
+        public void Sum_MultipleValues_ReturnSuccess(decimal value1, decimal value2, decimal value3, decimal value4, decimal value5,
+            decimal total, decimal expectedTotal)
+        { 
+            var resultWithTotal = _sampleService.Sum(value1, value2, value3, value4, value5, total); 
+            
+            Assert.Equal(expectedTotal, resultWithTotal);   
         }
+        //[Fact]
+        //public void Sum_MultipleValues_ReturnSuccess()
+        //{
+        //    //arrange
+        //    var value1 = 2;
+        //    var value2 = 4;
+        //    var value3 = 6;
+        //    var value4 = 8;
+        //    var value5 = 12;
+        //    var total = 2;
+        //    var withTotal = 34;
+        //    var withoutTotal = 32;
+
+        //    //act
+        //    var resultWithTotal = _sampleService.Sum(total, value1, value2, value3, value4, value5);
+        //    var resultWithoutTotal = _sampleService.Sum(value1, value2, value3, value4, value5);
+
+        //    //Assert
+        //    Assert.Equal(withTotal, resultWithTotal);
+        //    Assert.Equal(withoutTotal, resultWithoutTotal);
+        //}
 
         [Theory]
         [InlineData(-4)]
