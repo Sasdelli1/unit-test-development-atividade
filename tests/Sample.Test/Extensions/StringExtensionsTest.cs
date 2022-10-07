@@ -8,7 +8,9 @@ namespace Sample.Test.Extensions
 {
     public class StringExtensionsTest
     {
-        public StringExtensionsTest() { }
+        public StringExtensionsTest() 
+        { 
+        }
 
         [Theory]
         [InlineData("sasdellegabs")]
