@@ -9,7 +9,14 @@ namespace Sample
         //eles ou a partir do total
         public decimal Subtract(decimal total = 0, params decimal[] values)
         {
-            throw new NotImplementedException();
+            var result = total;
+
+            foreach (var item in values)
+            {
+                result -= item;
+            }
+
+            return result;
         }
 
         //TODO: Criar um método que soma passando um total ou não e a partir do

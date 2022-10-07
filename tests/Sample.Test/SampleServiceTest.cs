@@ -13,6 +13,28 @@ namespace Sample.Test
         }
 
         [Fact]
+        public void Subtract_MultipleValues_ReturnSuccess()
+        {
+            //arrange
+            var value1 = 80;
+            var value2 = 1;
+            var value3 = 1;
+            var value4 = 1;
+            var value5 = 1;
+            var total = 100;
+            var withTotal = 16;
+            var withoutTotal = 76;
+
+            //act
+            var resultWithTotal = _sampleService.Subtract(total, value1, value2, value3, value4, value5);
+            var resultWithoutTotal = _sampleService.Subtract(value1, value2, value3, value4, value5);
+
+            //Assert
+            Assert.Equal(withTotal, resultWithTotal);
+            Assert.Equal(withoutTotal, resultWithoutTotal);
+        }
+
+        [Fact]
         public void Sum_MultipleValues_ReturnSuccess()
         {
             //arrange
