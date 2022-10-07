@@ -24,6 +24,18 @@ namespace Sample.Test
             Assert.Equal(expectedTotal, resultWithOutTotal);
         }
 
+        [Theory]
+        [InlineData(2, 4, 6, 8, 12, 28)]
+        [InlineData(100, 25, 10, 12, -50, 110)]
+        [InlineData(-1000, 100, 1, 2000, 50, 0)]
+        [InlineData(10, 25, -100, -50, 0, 130)]
+        public void Subtract_MultipleValues_ReturnFail(decimal value1, decimal value2, decimal value3, decimal value4, decimal value5, decimal expectedTotal)
+        {
+            var resultWithOutTotal = _sampleService.Subtract(value1, value2, value3, value4, value5);
+
+            Assert.NotEqual(expectedTotal, resultWithOutTotal);
+        }
+
         //[Fact]
         //public void Subtract_MultipleValues_ReturnSuccess()
         //{
