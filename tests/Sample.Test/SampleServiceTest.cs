@@ -46,6 +46,19 @@ namespace Sample.Test
             
             Assert.Equal(expectedTotal, resultWithTotal);   
         }
+
+        [Theory]
+        [InlineData(2, 4, 6, 8, 12, 2, 28)]
+        [InlineData(4, 8, 12, 16, 24, 4, 64)]
+        [InlineData(-10, 10, -5, 20, -1, 10, 28)]
+        [InlineData(10, 25, -100, -50, -2, -30, -180)]
+        public void Sum_MultipleValues_ReturnFail(decimal value1, decimal value2, decimal value3, decimal value4, decimal value5,
+            decimal total, decimal expectedTotal)
+        {
+            var resultWithTotal = _sampleService.Sum(value1, value2, value3, value4, value5, total);
+
+            Assert.NotEqual(expectedTotal, resultWithTotal);
+        }
         //[Fact]
         //public void Sum_MultipleValues_ReturnSuccess()
         //{
