@@ -11,11 +11,15 @@ namespace Sample.Test.Extensions
 
         }
 
-        [Fact]
-        public void Should_DatetimeToStringShortPtBR_ReturnSuccess()
+        [Theory]
+        [InlineData("2022-10-30")]
+        [InlineData("2030-10-30")]
+        [InlineData("2001-10-30")]
+        [InlineData("1964-11-19")]
+        public void Should_DatetimeToStringShortPtBR_ReturnSuccess(DateTime date)
         {
             //arrange
-            var dateTest = DateTime.Now;
+            var dateTest = date;
             var expectedQtdChar = 10;
             var expectedQtdParts = 3;
             var characterSeparatorDate = "/";
