@@ -14,11 +14,11 @@ namespace Sample.Test.Extensions
         }
 
         [Theory]
-        [InlineData(5.99)]
+        [InlineData(0.99)]
         [InlineData(2.99)]
         [InlineData(5000.00)]
-        [InlineData(45.80)]
-        public void ToStringMoneyPtBR(double value)
+        [InlineData(-45.80)]
+        public void Should_ToStringMoneyPtBR_ReturnSucess(double value)
         {
 
             string actualResult;
@@ -28,5 +28,16 @@ namespace Sample.Test.Extensions
 
             Assert.Contains("R$", actualResult);
         }
+
+        [Theory]
+        [InlineData(0000000000000000000000000000000000000000000000000000000000000.9999999)]
+        public void Should_ToStringMoneyPtBR_ReturnFalse(double value)
+        {
+
+
+            Assert.Throws<OverflowException>(() => value.ToStringMoneyPtBR());
+
+        }    
     }
+
 }
